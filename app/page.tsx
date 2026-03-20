@@ -1,10 +1,7 @@
+import Home from "@/components/Home";
 
-const page = () => {
-  return (
-    <div>
-      home page
-    </div>
-  )
-}
+const Page = () => {
+  return <Home />;
+};
 
-export default page
+export default Page;
