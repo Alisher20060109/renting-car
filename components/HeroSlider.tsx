@@ -16,7 +16,7 @@ const HeroSlider = () => {
   const goTo = (index: number) => {
     if (animating) return;
     setAnimating(true);
-    setTimeout(() => { setCurrent(index); setAnimating(false); }, 400);
+    setTimeout(() => { setCurrent(index); setAnimating(false); }, 500);
   };
 
   const prev = () => goTo((current - 1 + slides.length) % slides.length);
@@ -32,8 +32,7 @@ const HeroSlider = () => {
       {slides.map((slide, i) => (
         <div
           key={slide.id}
-          className={`absolute inset-0  transition-opacity duration-700 ${i === current ? 'opacity-100' : 'opacity-0'}`}
-          style={{ background: `linear-gradient(to bottom right, var(--tw-gradient-from), var(--tw-gradient-to))` }}
+          className={`absolute inset-0 transition-opacity duration-700 ${i === current ? 'opacity-100' : 'opacity-0'}`}
         >
           {/* Gradient bg */}
           <div className={`absolute inset-0 bg-linear-to-br ${slide.bg}`} />
@@ -44,8 +43,11 @@ const HeroSlider = () => {
             backgroundSize: '40px 40px',
           }} />
 
-          {/* Car image — o'ng pastda, yarmi ko'rinadi */}
-          <div className={`absolute right-0 bottom-0 w-[50%] h-full transition-all duration-700 ${
+          {/* Car image — katta ekranda o'ng, kichikda pastda */}
+          <div className={`absolute bottom-0 right-0 
+            w-full h-[40%] 
+            md:w-[55%] md:h-full
+            transition-all duration-700 ${
             i === current && !animating ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-16'
           }`}>
             <Image
@@ -54,26 +56,29 @@ const HeroSlider = () => {
               fill
               className="object-cover object-center"
               priority={i === 0}
-              sizes="50vw"
+              sizes="(max-width: 768px) 100vw, 55vw"
             />
-            {/* Chap tarafdan gradient — matn bilan qorishmasin */}
-            <div className="absolute inset-0 bg-linear-to-r from-[#6347F9] via-transparent to-transparent" />
+            {/* Gradient overlay — matn bilan qorishmasin */}
+            <div className="absolute inset-0 bg-linear-to-r from-[#6347F9] via-[#6347F9]/40 to-transparent" />
+            {/* Pastdan gradient — mobilda */}
+            <div className="absolute inset-0 bg-linear-to-t from-[#6347F9] via-transparent to-transparent md:hidden" />
           </div>
+          
         </div>
       ))}
 
       {/* Prev */}
-      <button onClick={prev} className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-200 hover:scale-110">
-        <ChevronLeft size={22} />
+      <button onClick={prev} className="absolute left-3 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white p-2 md:p-3 rounded-full transition-all duration-200 hover:scale-110">
+        <ChevronLeft size={18} />
       </button>
 
       {/* Next */}
-      <button onClick={next} className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-200 hover:scale-110">
-        <ChevronRight size={22} />
+      <button onClick={next} className="absolute right-3 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white p-2 md:p-3 rounded-full transition-all duration-200 hover:scale-110">
+        <ChevronRight size={18} />
       </button>
 
       {/* Dots */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex gap-2">
         {slides.map((_, i) => (
           <button key={i} onClick={() => goTo(i)}
             className={`transition-all duration-300 rounded-full ${i === current ? 'w-8 h-2 bg-white' : 'w-2 h-2 bg-white/40 hover:bg-white/70'}`}

@@ -43,7 +43,7 @@ const MobileMenu = () => {
 
             {/* SIDEBAR */}
             <aside
-                className={`fixed top-0 left-0 h-full w-[300px] bg-white z-[60] shadow-2xl flex flex-col transition-transform duration-300 ease-in-out ${
+                className={`fixed top-0 left-0 h-full w-75 bg-white z-60 shadow-2xl flex flex-col transition-transform duration-300 ease-in-out ${
                     menuOpen ? 'translate-x-0' : '-translate-x-full'
                 }`}
             >

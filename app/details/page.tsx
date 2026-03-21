@@ -1,7 +1,10 @@
-import Details from "@/components/Details";
 
-const Page = () => {
-  return <Details />;
-};
+const Details = () => {
+  return (
+    <div>
+      <h1>Vehicle Details</h1>
+    </div>
+  )
+}
 
-export default Page;
+export default Details

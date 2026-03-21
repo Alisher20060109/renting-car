@@ -1,97 +1,134 @@
-import React from 'react';
-import { Calendar, MapPin, Car, ArrowRight, Star, Shield, Clock } from 'lucide-react';
+
+import Link from 'next/link';
+import { Car, MapPin, Wallet } from 'lucide-react';
 import HeroSlider from './HeroSlider';
+import HeroSliderCard from './HeroSliderCard';
+import Image from 'next/image';
+
 
 const Home = () => {
   return (
     <main>
-      {/* ===== HERO SECTION ===== */}
       <section className="relative w-full h-150 mt-2 overflow-hidden rounded-4xl">
 
-        {/* HeroSlider — background + car image + controls */}
         <HeroSlider />
 
-        {/* Content — ustida turadi */}
-        <div className="relative z-10 h-full flex items-center">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-12 flex items-center justify-between gap-8">
+        <HeroSliderCard />
 
-            {/* Chap tomon — matn */}
-            <div className="flex-1 max-w-xl">
+      </section>
+      <section className="container mx-auto  ">
+        <div className="w-full py-16 bg-white">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-              <h1 className="text-5xl lg:text-6xl font-black text-white leading-tight mb-4">
-                Experience <br />
-                <span className="text-yellow-400">the road</span> <br />
-                like never before
-              </h1>
-              <p className="text-white/70 text-base leading-relaxed mb-8 max-w-md">
-                Premium vehicles at your fingertips. Book in minutes, drive in style — wherever the road takes you.
+            <Link href="/availability" className="flex flex-col items-center text-center px-10 py-10 group rounded-2xl border border-gray-200 shadow-sm hover:shadow-xl hover:-translate-y-2 hover:border-[#6347F9] transition-all duration-300">
+              <div className="mb-5 text-gray-800 group-hover:text-[#6347F9] transition-colors duration-300">
+                <MapPin size={48} strokeWidth={1.5} />
+              </div>
+              <h3 className="text-lg font-black text-gray-900 mb-3 group-hover:text-[#6347F9] transition-colors duration-300">
+                Availability
+              </h3>
+              <p className="text-gray-500 text-sm leading-relaxed">
+                Diam tincidunt tincidunt erat at semper fermentum. Id ultricies quis
               </p>
-              <div className="flex items-center gap-4">
-                <button className="bg-yellow-400 hover:bg-yellow-300 text-black font-extrabold px-8 py-4 rounded-2xl transition-all duration-200 hover:scale-105 hover:shadow-xl flex items-center gap-2">
-                  View all cars
-                  <ArrowRight size={18} />
-                </button>
-                
+            </Link>
+
+            <Link href="/comfort" className="flex flex-col items-center text-center px-10 py-10 group rounded-2xl border border-gray-200 shadow-sm hover:shadow-xl hover:-translate-y-2 hover:border-[#6347F9] transition-all duration-300">
+              <div className="mb-5 text-gray-800 group-hover:text-[#6347F9] transition-colors duration-300">
+                <Car size={48} strokeWidth={1.5} />
               </div>
-            </div>
+              <h3 className="text-lg font-black text-gray-900 mb-3 group-hover:text-[#6347F9] transition-colors duration-300">
+                Comfort
+              </h3>
+              <p className="text-gray-500 text-sm leading-relaxed">
+                Gravida auctor fermentum morbi vulputate ac egestas orcietium convallis
+              </p>
+            </Link>
 
-            {/* O'ng tomon — Booking card */}
-            <div className="hidden lg:block w-90 bg-white rounded-3xl shadow-2xl p-6">
-              <h3 className="text-xl font-black text-gray-900 mb-5 text-center">Book your car</h3>
-
-              <div className="space-y-3">
-                {/* Car type */}
-                <div className="flex items-center gap-3 bg-gray-50 rounded-xl px-4 py-3 cursor-pointer hover:bg-gray-100 transition-colors">
-                  <Car size={18} className="text-[#6347F9]" />
-                  <span className="flex-1 text-gray-400 text-sm font-medium">Car type</span>
-                  <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </div>
-
-                {/* Place of rental */}
-                <div className="flex items-center gap-3 bg-gray-50 rounded-xl px-4 py-3 cursor-pointer hover:bg-gray-100 transition-colors">
-                  <MapPin size={18} className="text-[#6347F9]" />
-                  <span className="flex-1 text-gray-400 text-sm font-medium">Place of rental</span>
-                  <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </div>
-
-                {/* Place of return */}
-                <div className="flex items-center gap-3 bg-gray-50 rounded-xl px-4 py-3 cursor-pointer hover:bg-gray-100 transition-colors">
-                  <MapPin size={18} className="text-[#6347F9]" />
-                  <span className="flex-1 text-gray-400 text-sm font-medium">Place of return</span>
-                  <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </div>
-
-                {/* Rental date */}
-                <div className="flex items-center gap-3 bg-gray-50 rounded-xl px-4 py-3 cursor-pointer hover:bg-gray-100 transition-colors">
-                  <Calendar size={18} className="text-[#6347F9]" />
-                  <span className="flex-1 text-gray-400 text-sm font-medium">Rental date</span>
-                  <Calendar size={16} className="text-gray-400" />
-                </div>
-
-                {/* Return date */}
-                <div className="flex items-center gap-3 bg-gray-50 rounded-xl px-4 py-3 cursor-pointer hover:bg-gray-100 transition-colors">
-                  <Calendar size={18} className="text-[#6347F9]" />
-                  <span className="flex-1 text-gray-400 text-sm font-medium">Return date</span>
-                  <Calendar size={16} className="text-gray-400" />
-                </div>
-
-                <button className="w-full bg-yellow-400 hover:bg-yellow-300 text-black font-extrabold py-4 rounded-xl transition-all duration-200 hover:shadow-lg mt-2">
-                  Book now
-                </button>
+            <Link href="/savings" className="flex flex-col items-center text-center px-10 py-10 group rounded-2xl border border-gray-200 shadow-sm hover:shadow-xl hover:-translate-y-2 hover:border-[#6347F9] transition-all duration-300">
+              <div className="mb-5 text-gray-800 group-hover:text-[#6347F9] transition-colors duration-300">
+                <Wallet size={48} strokeWidth={1.5} />
               </div>
-            </div>
+              <h3 className="text-lg font-black text-gray-900 mb-3 group-hover:text-[#6347F9] transition-colors duration-300">
+                Savings
+              </h3>
+              <p className="text-gray-500 text-sm leading-relaxed">
+                Pretium convallis id diam sed commodo vestibulum lobortis volutpat
+              </p>
+            </Link>
+
           </div>
         </div>
       </section>
+      <section>
+        <div className="container mx-auto p-6 flex flex-col md:flex-row items-center gap-10">
 
-      {/* ===== STATS BAR ===== */}
-      
+          {/* Rasm bloki */}
+          <div className="w-full md:w-1/2 relative overflow-hidden rounded-3xl shadow-lg aspect-square">
+            <Image
+              src="/images/salon.jpg"
+              alt="salon"
+              fill
+              priority
+              quality={100}
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover object-center"
+            />
+          </div>
+
+          {/* Matn bloki */}
+          <div className="w-full md:w-1/2 flex flex-col gap-8">
+
+            <div className="flex gap-4">
+              <div className="shrink-0 w-10 h-10 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold">
+                1
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-gray-900">Erat at semper</h3>
+                <p className="text-gray-500 mt-1 leading-relaxed">
+                  Non amet fermentum est in enim at sit ullamcorper. Sit elementum rhoncus nullam feugiat. Risus sem fermentum...
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-4">
+              <div className="shrink-0 w-10 h-10 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold">
+                2
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-gray-900">Urna nec vivamus risus duis arcu</h3>
+                <p className="text-gray-500 mt-1 leading-relaxed">
+                  Aliquam adipiscing velit semper morbi. Purus non eu cursus porttitor tristique et gravida. Quis nunc interdum gravida ullamcorper
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-4">
+              <div className="shrink-0 w-10 h-10 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold">
+                3
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-gray-900">Lobortis euismod imperdiet tempus</h3>
+                <p className="text-gray-500 mt-1 leading-relaxed">
+                  Viverra scelerisque mauris et nullam molestie et. Augue adipiscing praesent nisl cras nunc luctus viverra nisi
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-4">
+              <div className="shrink-0 w-10 h-10 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold">
+                4
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-gray-900">Cras nulla aliquet nam eleifend amet et</h3>
+                <p className="text-gray-500 mt-1 leading-relaxed">
+                  Aliquam adipiscing velit semper morbi. Purus non eu cursus porttitor tristique et gravida. Quis nunc interdum gravida ullamcorper sed integer. Quisque eleifend tincidunt vulputate libero
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
     </main>
   );
 };

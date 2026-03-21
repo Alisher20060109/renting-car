@@ -1,7 +1,13 @@
-import AboutUs from "@/components/AboutUs";
 
-const Page = () => {
-  return <AboutUs />;
-};
 
-export default Page;
+const AboutUs = () => {
+  return (
+    <div>
+      <h1>About Us</h1>
+    </div>
+  )
+}
+
+export default AboutUs
+
+                                   

@@ -1,7 +1,9 @@
-import Vehicles from "@/components/Vehicles";
 
-const Page = () => {
-  return <Vehicles />;
-};
 
-export default Page;
+const Vehicles = () => {
+  return (
+    <div>Vehicles</div>
+  )
+}
+
+export default Vehicles
