@@ -1,8 +1,5 @@
+import ContactUsView from "@/components/contact-us/ContactUsView";
 
-const ContactUs = () => {
-  return (
-    <div>ContactUs</div>
-  )
+export default function ContactUsPage() {
+  return <ContactUsView />;
 }
-
-export default ContactUs
