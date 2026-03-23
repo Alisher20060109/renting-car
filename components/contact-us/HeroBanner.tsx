@@ -1,9 +1,10 @@
+import Link from "next/link";
+
 type HeroBannerProps = {
   title: string;
-  breadcrumb: string;
 };
 
-export default function HeroBanner({ title, breadcrumb }: HeroBannerProps) {
+export default function HeroBanner({ title }: HeroBannerProps) {
   return (
     <section className="w-full py-10 sm:py-12 lg:py-14">
       <div className="mx-auto w-full max-w-7xl px-4 text-center sm:px-6 lg:px-8">
@@ -11,8 +12,15 @@ export default function HeroBanner({ title, breadcrumb }: HeroBannerProps) {
           {title}
         </h1>
 
+        {/* 🔥 BREADCRUMB */}
         <p className="mt-3 text-sm text-neutral-500 sm:text-base">
-          {breadcrumb}
+          <Link href="/" className="transition hover:text-black cursor-pointer">
+            Home
+          </Link>
+
+          <span className="mx-2">/</span>
+
+          <span className="text-black font-medium">Contact Us</span>
         </p>
       </div>
     </section>
