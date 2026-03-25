@@ -6,7 +6,9 @@ import HeroSliderCard from './HeroSliderCard';
 import Image from 'next/image';
 
 
+
 const Home = () => {
+    
   return (
     <main>
       <section className="relative w-full h-150 mt-2 overflow-hidden rounded-4xl">

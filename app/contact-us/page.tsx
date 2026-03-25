@@ -1,5 +1,11 @@
-import ContactUsView from "@/components/contact-us/ContactUsView";
+import React from 'react'
 
-export default function ContactUsPage() {
-  return <ContactUsView />;
+const ContactUs = () => {
+  return (
+    <div>
+        <h1 className='text-3xl font-bold text-center mt-10'>Contact Us</h1>
+    </div>
+  )
 }
+
+export default ContactUs

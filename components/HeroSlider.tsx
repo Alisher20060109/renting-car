@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
+import useApi from '@/utils/api';
 
 const slides = [
   { id: 1, image: "/images/bmw.jpg", bg: "from-[#6347F9] to-[#3b1fa8]" },
@@ -10,6 +11,10 @@ const slides = [
 ];
 
 const HeroSlider = () => {
+
+  const {data: cars} = useApi({url : "cars"})
+    console.log(cars);
+
   const [current, setCurrent] = useState(0);
   const [animating, setAnimating] = useState(false);
 
