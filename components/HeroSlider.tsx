@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import useApi from "@/utils/api";
+import Filters from "@/app/filter/page";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -275,7 +276,7 @@ const HeroSlider: React.FC = () => {
               >
                 Ijaraga olish
               </button>
-              <button className="px-7 sm:px-9 h-11 sm:h-12 rounded-full border border-white/40 text-white text-sm sm:text-base font-semibold hover:bg-white/10 transition-all duration-200 backdrop-blur-sm">
+              <button  className="px-7 sm:px-9 h-11 sm:h-12 rounded-full border border-white/40 text-white text-sm sm:text-base font-semibold hover:bg-white/10 transition-all duration-200 backdrop-blur-sm">
                 Batafsil
               </button>
             </div>

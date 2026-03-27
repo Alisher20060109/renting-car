@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import { Car, MapPin, Wallet } from 'lucide-react';
 import HeroSlider from './HeroSlider';
-import HeroSliderCard from './HeroSliderCard';
+
 import Image from 'next/image';
 
 

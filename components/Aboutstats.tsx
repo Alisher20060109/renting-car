@@ -1,0 +1,74 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
+const stats = [
+    {
+        id: 1,
+        value: 20000,
+        label: "Happy customers",
+        suffix: "k+",
+    },
+    {
+        id: 2,
+        value: 540,
+        label: "Count of cars",
+        suffix: "+",
+    },
+    {
+        id: 3,
+        value: 25,
+        label: "Years of experience",
+        suffix: "+",
+    },
+];
+
+export default function StatsSection() {
+    const [counts, setCounts] = useState([0, 0, 0]);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCounts((prev) =>
+                prev.map((num, i) => {
+                    const target = stats[i].value;
+                    const increment = Math.ceil(target / 50);
+
+                    if (num < target) {
+                        return Math.min(num + increment, target);
+                    }
+                    return num;
+                })
+            );
+        }, 40);
+
+        return () => clearInterval(interval);
+    }, []);
+
+    return (
+        <section className="w-full  py-5">
+            <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 text-center gap-10">
+
+                {stats.map((item, index) => (
+                    <div
+                        key={item.id}
+                        className="flex flex-col items-center justify-center transition duration-300 hover:scale-105"
+                    >
+                        {/* Number */}
+                        <h2 className="text-4xl md:text-5xl font-bold text-indigo-600">
+                            {item.suffix === "k+"
+                                ? Math.floor(counts[index] / 1000)
+                                : counts[index]}
+                            {item.suffix}
+                        </h2>
+
+                        {/* Label */}
+                        <p className="mt-2 text-sm text-gray-600 font-medium">
+                            {item.label}
+                        </p>
+                    </div>
+                ))}
+
+            </div>
+        </section>
+    );
+}
