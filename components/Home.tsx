@@ -15,8 +15,7 @@ const Home = () => {
 
         <HeroSlider />
 
-        <HeroSliderCard />
-
+       
       </section>
       <section className="container mx-auto  ">
         <div className="w-full py-16 bg-white">
