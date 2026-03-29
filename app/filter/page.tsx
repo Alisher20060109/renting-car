@@ -125,4 +125,4 @@ const Filters: React.FC<FiltersProps> = ({ preSelectedId, allCars }) => {
   );
 };
 
-export default Filters;
+export default Filters; 

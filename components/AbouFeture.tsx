@@ -55,7 +55,7 @@ export default function FeatureSection() {
                 </div>
 
                 {/* RIGHT IMAGE */}
-                <div className="w-full h-[400px] relative overflow-hidden rounded-2xl">
+                <div className="w-full h-100 relative overflow-hidden rounded-2xl">
                     <img
                         src={images[index]}
                         alt="car"

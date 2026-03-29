@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import useApi from "@/utils/api";
-import Filters from "@/app/filter/page";
+
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
