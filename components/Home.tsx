@@ -1,9 +1,8 @@
 
-import Link from 'next/link';
-import { Car, MapPin, Wallet } from 'lucide-react';
 import HeroSlider from './HeroSlider';
-import HeroSliderCard from './HeroSliderCard';
+
 import Image from 'next/image';
+import BrandsSection from './BrandsSection';
 
 
 
@@ -15,51 +14,10 @@ const Home = () => {
 
         <HeroSlider />
 
-        <HeroSliderCard />
-
+       
       </section>
       <section className="container mx-auto  ">
-        <div className="w-full py-16 bg-white">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-            <Link href="/availability" className="flex flex-col items-center text-center px-10 py-10 group rounded-2xl border border-gray-200 shadow-sm hover:shadow-xl hover:-translate-y-2 hover:border-[#6347F9] transition-all duration-300">
-              <div className="mb-5 text-gray-800 group-hover:text-[#6347F9] transition-colors duration-300">
-                <MapPin size={48} strokeWidth={1.5} />
-              </div>
-              <h3 className="text-lg font-black text-gray-900 mb-3 group-hover:text-[#6347F9] transition-colors duration-300">
-                Availability
-              </h3>
-              <p className="text-gray-500 text-sm leading-relaxed">
-                Diam tincidunt tincidunt erat at semper fermentum. Id ultricies quis
-              </p>
-            </Link>
-
-            <Link href="/comfort" className="flex flex-col items-center text-center px-10 py-10 group rounded-2xl border border-gray-200 shadow-sm hover:shadow-xl hover:-translate-y-2 hover:border-[#6347F9] transition-all duration-300">
-              <div className="mb-5 text-gray-800 group-hover:text-[#6347F9] transition-colors duration-300">
-                <Car size={48} strokeWidth={1.5} />
-              </div>
-              <h3 className="text-lg font-black text-gray-900 mb-3 group-hover:text-[#6347F9] transition-colors duration-300">
-                Comfort
-              </h3>
-              <p className="text-gray-500 text-sm leading-relaxed">
-                Gravida auctor fermentum morbi vulputate ac egestas orcietium convallis
-              </p>
-            </Link>
-
-            <Link href="/savings" className="flex flex-col items-center text-center px-10 py-10 group rounded-2xl border border-gray-200 shadow-sm hover:shadow-xl hover:-translate-y-2 hover:border-[#6347F9] transition-all duration-300">
-              <div className="mb-5 text-gray-800 group-hover:text-[#6347F9] transition-colors duration-300">
-                <Wallet size={48} strokeWidth={1.5} />
-              </div>
-              <h3 className="text-lg font-black text-gray-900 mb-3 group-hover:text-[#6347F9] transition-colors duration-300">
-                Savings
-              </h3>
-              <p className="text-gray-500 text-sm leading-relaxed">
-                Pretium convallis id diam sed commodo vestibulum lobortis volutpat
-              </p>
-            </Link>
-
-          </div>
-        </div>
+        <BrandsSection />
       </section>
       <section>
         <div className="container mx-auto p-6 flex flex-col md:flex-row items-center gap-10">

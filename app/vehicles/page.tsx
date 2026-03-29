@@ -4,6 +4,7 @@ import {  useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import useApi from "@/utils/api"
+import { LucideFuel, SlidersVertical, Snowflake } from "lucide-react"
 
 type Car = {
   id: string
@@ -72,7 +73,9 @@ export default function VehiclesPage() {
                 }`}
             >
               {cat.image && (
-                <Image src={cat.image} alt={cat.name} width={20} height={20} className="object-contain" />
+                <Image src={cat.image} alt={cat.name} width={20} height={20}
+                  unoptimized className="object-contain" />
+                
               )}
               {cat.name}
             </button>
@@ -93,6 +96,7 @@ export default function VehiclesPage() {
                       alt={car.model}
                       width={280}
                       height={160}
+                      unoptimized
                       className="object-contain w-full h-full"
                     />
                   ) : (
@@ -116,21 +120,21 @@ export default function VehiclesPage() {
                   {/* Features */}
                   <div className="flex items-center gap-4 text-xs text-gray-500 my-3">
                     <span className="flex items-center gap-1">
-                      <span>⚙️</span> {car.transmission || "Automat"}
-                    </span>
+                      <span className="text-black"><SlidersVertical className="p-0.5" /></span> <span className="line-clamp-1"> {car.transmission || "Automat"}</span>
+                    </span> 
                     <span className="flex items-center gap-1">
-                      <span>⛽</span> {car.fuel_type || "PB 95"}
+                      <span className="text-black"><LucideFuel className="p-0.5" /></span> {car.fuel_type || "PB 95"}
                     </span>
                     {car.air_conditioning && (
                       <span className="flex items-center gap-1">
-                        <span>❄️</span> Air Conditioner
+                        <span className="text-black"> <Snowflake className="p-0.5" /></span> <span className="line-clamp-1">Air Conditioner</span>
                       </span>
                     )}
                   </div>
 
                   {/* Button */}
                   <Link
-                    href={`/vehicles/${car.id}`}
+                    href={`/singl/${car.id}`}
                     className="block w-full text-center bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold py-2.5 rounded-xl transition"
                   >
                     View Details
@@ -153,6 +157,7 @@ export default function VehiclesPage() {
                       alt={brand.name}
                       width={80}
                       height={50}
+                      unoptimized
                       className="object-contain"
                     />
                   ) : (
