@@ -87,9 +87,9 @@ export default function VehiclesPage() {
           {filteredCars.map((car) => {
             const category = categories.find((c) => c.id === car.category_id)
             return (
-              <div key={car.id} className="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition">
+              <div key={car.id} className="bg-white w-full h-[360px] rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition">
                 {/* Car Image */}
-                <div className="bg-gray-100 h-48 flex items-center justify-center p-4">
+                <div className="bg-gray-100 h-48 flex items-center justify-center p-0.5">
                   {car.images?.[0] ? (
                     <Image
                       src={car.images[0]}
@@ -97,7 +97,7 @@ export default function VehiclesPage() {
                       width={280}
                       height={160}
                       unoptimized
-                      className="object-contain w-full h-full"
+                      className="object-cover w-full h-full"
                     />
                   ) : (
                     <div className="text-gray-300 text-6xl">🚗</div>
