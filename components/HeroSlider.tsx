@@ -68,12 +68,12 @@ const HeroSlider = () => {
       ))}
 
       {/* Prev */}
-      <button onClick={prev} className="absolute left-3 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white p-2 md:p-3 rounded-full transition-all duration-200 hover:scale-110">
+      <button onClick={prev} className="absolute left-3 cursor-pointer top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white p-2 md:p-3 rounded-full transition-all duration-200 hover:scale-110">
         <ChevronLeft size={18} />
       </button>
 
       {/* Next */}
-      <button onClick={next} className="absolute right-3 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white p-2 md:p-3 rounded-full transition-all duration-200 hover:scale-110">
+      <button onClick={next} className="absolute right-3 cursor-pointer top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white p-2 md:p-3 rounded-full transition-all duration-200 hover:scale-110">
         <ChevronRight size={18} />
       </button>
 
