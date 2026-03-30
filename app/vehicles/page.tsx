@@ -532,17 +532,47 @@ export default function VehiclesPage() {
         {/* ── 4. BRANDS BAR ── */}
         {brands && brands.length > 0 && (
           <div className="bg-white rounded-2xl border border-gray-100 px-8 py-8">
-            <div className="flex flex-wrap items-center justify-center gap-10">
-              {brands.map((brand) => (
-                <div key={brand.id} className="flex items-center justify-center grayscale hover:grayscale-0 transition">
-                  {brand.logo ? (
-                    <Image src={brand.logo} alt={brand.name} width={80} height={50} unoptimized className="object-contain" />
-                  ) : (
-                    <span className="text-lg font-bold text-gray-700">{brand.name}</span>
-                  )}
-                </div>
-              ))}
+            <p className="text-xs text-gray-400 text-center mb-5 font-medium tracking-wide uppercase">
+              Filter by brand
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-6">
+              {brands.map((brand) => {
+                const isActive = selectedBrands.includes(brand.id)
+                return (
+                  <button
+                    key={brand.id}
+                    onClick={() => toggleBrand(brand.id)}
+                    className={`flex items-center justify-center rounded-xl px-4 py-2 border-2 transition-all ${isActive
+                        ? "border-indigo-500 bg-indigo-50 grayscale-0 opacity-100 shadow-sm"
+                        : "border-transparent grayscale opacity-50 hover:opacity-80 hover:border-gray-200"
+                      }`}
+                  >
+                    {brand.logo ? (
+                      <Image
+                        src={brand.logo}
+                        alt={brand.name}
+                        width={80}
+                        height={50}
+                        unoptimized
+                        className="object-contain"
+                      />
+                    ) : (
+                      <span className="text-lg font-bold text-gray-700">{brand.name}</span>
+                    )}
+                  </button>
+                )
+              })}
             </div>
+            {selectedBrands.length > 0 && (
+              <div className="text-center mt-4">
+                <button
+                  onClick={() => setSelectedBrands([])}
+                  className="text-xs text-indigo-600 hover:underline font-medium"
+                >
+                  Clear brand filter
+                </button>
+              </div>
+            )}
           </div>
         )}
 
