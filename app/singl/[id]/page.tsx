@@ -328,7 +328,7 @@ export default function SinglePage() {
 
   return (
     <div className="min-h-screen bg-[#070b14] text-white">
-      <section className="relative min-h-[88vh] overflow-hidden">
+      <section className="relative bg-black min-h-[88vh] overflow-hidden">
         <img
           src={activeImage}
           alt={modelName}
@@ -392,7 +392,7 @@ export default function SinglePage() {
       </section>
 
 
-      <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-10 lg:py-14">
+      <section className="mx-auto max-w-7xl bg-black px-4 py-10 sm:px-6 lg:px-10 lg:py-14">
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1.35fr)_380px]">
           <div className="space-y-8">
             {images.length > 1 ? (
@@ -438,8 +438,10 @@ export default function SinglePage() {
               </div>
             ) : null}
 
+            
+
             <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_330px]">
-              <section className="rounded-[30px] border border-white/10 bg-[#0d1320] p-6 shadow-[0_20px_60px_rgba(0,0,0,0.35)]">
+              <section className="rounded-[30px] border border-white/10 bg-[#00030a] p-6 ">
                 <SectionTitle
                   label="Umumiy ma'lumot"
                   title="Haydash tajribasi va tavsif"
