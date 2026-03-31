@@ -12,7 +12,6 @@ export default function HeroBanner({ title }: HeroBannerProps) {
           {title}
         </h1>
 
-        {/* 🔥 BREADCRUMB */}
         <p className="mt-3 text-sm text-neutral-500 sm:text-base">
           <Link href="/" className="transition hover:text-black cursor-pointer">
             Home
