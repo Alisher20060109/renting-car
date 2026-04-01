@@ -1,0 +1,42 @@
+/* swiper container */
+.video-swiper {
+    position: relative;
+    padding-bottom: 0 !important;
+    /* pastdagi joyni yo'q qiladi */
+}
+
+/* pagination umumiy */
+.video-swiper .swiper-pagination {
+    bottom: 6px !important;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+/* hover bo‘lsa chiqadi */
+.video-swiper:hover .swiper-pagination {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* oddiy nuqtalar */
+.video-swiper .swiper-pagination-bullet {
+    width: 6px;
+    height: 6px;
+    background: #5c86b0;
+    /* slate-400 */
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+/* active nuqta */
+.video-swiper .swiper-pagination-bullet-active {
+    width: 18px;
+    border-radius: 9999px;
+    background: #6366f1;
+    /* violet (sayt rangiga mos) */
+    opacity: 1;
+}
+.swiper{
+    background-color: white;
+}

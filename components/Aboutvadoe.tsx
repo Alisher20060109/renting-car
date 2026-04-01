@@ -8,7 +8,7 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-
+import "../app/vodeswiper.css"
 import useApi from "@/utils/api";
 
 type Car = {
@@ -66,7 +66,7 @@ export default function VideoSwiper() {
   if (loading) {
     return (
       <section className="w-full bg-white py-12 md:py-16">
-        <div className="mx-auto max-w-7xl px-4">
+        <div className=" px-4">
           <div className="h-[260px] w-full animate-pulse rounded-[24px] bg-gray-200 md:h-[320px]" />
         </div>
       </section>
@@ -85,8 +85,8 @@ export default function VideoSwiper() {
 
   if (!videos.length) {
     return (
-      <section className="w-full bg-white py-12 md:py-16">
-        <div className="mx-auto max-w-7xl px-4 text-center text-gray-500">
+      <section className="w-full ">
+        <div className=" px-4 text-center text-gray-700">
           Video topilmadi
         </div>
       </section>
@@ -95,7 +95,7 @@ export default function VideoSwiper() {
 
   return (
     <>
-      <section className="w-full bg-white py-12 md:py-16">
+      <section className="w-full bg-white ">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-8 text-center">
             <p className="mb-2 text-sm font-semibold uppercase tracking-[0.25em] text-gray-500">

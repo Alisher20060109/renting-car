@@ -18,6 +18,7 @@ import {
   ShieldCheck,
   Snowflake,
   TimerReset,
+  X,
   type LucideIcon,
 } from "lucide-react";
 import useApi from "@/utils/api";
@@ -233,12 +234,53 @@ function BrandLogo() {
   );
 }
 
-function RentModal({
+function SuccessToast({
   open,
   onClose,
 }: {
   open: boolean;
   onClose: () => void;
+}) {
+  useEffect(() => {
+    if (!open) return;
+
+    const timer = setTimeout(() => {
+      onClose();
+    }, 2500);
+
+    return () => clearTimeout(timer);
+  }, [open, onClose]);
+
+  if (!open) return null;
+
+  return (
+    <div className="fixed right-4 top-4 z-[1000] w-[calc(100%-32px)] max-w-[340px] rounded-2xl border border-emerald-200 bg-white px-4 py-4 shadow-[0_20px_50px_rgba(15,23,42,0.14)]">
+      <div className="flex items-start gap-3">
+        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
+          <Check size={18} />
+        </div>
+
+        <div>
+          <h4 className="text-sm font-extrabold text-slate-900">
+            Muvaffaqiyatli
+          </h4>
+          <p className="mt-1 text-sm leading-5 text-slate-600">
+            Siz muvaffaqiyatli o‘tdingiz
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function RentModal({
+  open,
+  onClose,
+  onSuccess,
+}: {
+  open: boolean;
+  onClose: () => void;
+  onSuccess: () => void;
 }) {
   const [formData, setFormData] = useState({
     fullName: "",
@@ -272,167 +314,226 @@ function RentModal({
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    console.log("Ro'yxatdan o'tish:", formData);
+    const message = `
+🆕 Yangi buyurtma!
 
-    alert("Ro'yxatdan o'tish muvaffaqiyatli yuborildi!");
+👤 Ism: ${formData.fullName}
+📧 Email: ${formData.email}
+📱 Telefon: ${formData.phone}
+  `;
 
-    setFormData({
-      fullName: "",
-      email: "",
-      phone: "",
-      avatar: "",
-    });
+    // 👇 SHU YERGA QO‘YASAN
+    const TOKEN = "8601257224:AAGDUusBqO4_HQt50FsyNZlRRs66PZVw48A";
+    const CHAT_ID = "7970927566";
 
-    onClose();
+    try {
+      await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          chat_id: CHAT_ID,
+          text: message,
+        }),
+      });
+
+      alert("Telegramga yuborildi ✅");
+
+      setFormData({
+        fullName: "",
+        email: "",
+        phone: "",
+        avatar: "",
+      });
+
+      onClose();
+      onSuccess();
+    } catch (error) {
+      console.error("Xatolik:", error);
+    }
   };
 
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-[999] flex items-center justify-center px-4 py-6">
+    <div className="fixed inset-0 z-[999] flex items-center justify-center p-3 sm:p-4">
       <button
         type="button"
         aria-label="Overlay close"
         onClick={onClose}
-        className="absolute inset-0 cursor-pointer bg-slate-900/45 backdrop-blur-[4px]"
+        className="absolute inset-0 bg-[#0f172a]/75 backdrop-blur-md"
       />
 
-      <div className="relative z-10 w-full max-w-[540px] overflow-hidden rounded-[30px] border border-slate-200 bg-white p-6 shadow-[0_30px_90px_rgba(15,23,42,0.22)] sm:p-8">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(251,191,36,0.14),transparent_28%),radial-gradient(circle_at_bottom_right,rgba(124,58,237,0.12),transparent_35%)]" />
+      <div className="relative z-10 w-full max-w-[760px] overflow-hidden rounded-[26px] bg-white shadow-[0_30px_120px_rgba(15,23,42,0.30)]">
+        <button
+          type="button"
+          onClick={onClose}
+          className="absolute right-4 top-4 z-20 flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white/90 text-slate-500 transition hover:bg-slate-100 hover:text-slate-900"
+        >
+          <X size={18} />
+        </button>
 
-        <div className="relative z-10">
-          <div className="flex items-start justify-between gap-4">
-            <div className="flex items-center gap-4">
-              <BrandLogo />
-              <h2 className="text-3xl font-black tracking-tight text-slate-900">
-                AutoRent
-              </h2>
+        <div className="grid md:grid-cols-[0.95fr_1.15fr]">
+          <div className="hidden md:flex flex-col justify-between bg-[#f8fafc] p-8 lg:p-10">
+            <div>
+              <div className="flex items-center gap-3">
+                <BrandLogo />
+                <h2 className="text-3xl font-black tracking-tight text-slate-900">
+                  AutoRent
+                </h2>
+              </div>
+
+              <p className="mt-8 text-xs font-bold uppercase tracking-[0.28em] text-violet-600">
+                Premium Service
+              </p>
+
+              <h3 className="mt-3 text-4xl font-black leading-tight text-slate-900">
+                Barcha asosiy
+                <br />
+                ma&apos;lumotlarni
+                <br />
+                kiriting
+              </h3>
+
+              <div className="mt-4 h-1 w-16 rounded-full bg-amber-400" />
+            </div>
+
+            <div className="rounded-[24px] border border-slate-200 bg-white p-5 shadow-sm">
+              <div className="space-y-4">
+                {[
+                  "24/7 yordam",
+                  "Tezkor bog‘lanish",
+                  "Ishonchli va qulay xizmat",
+                ].map((item) => (
+                  <div key={item} className="flex items-center gap-3">
+                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-amber-50 text-amber-500">
+                      <Check size={16} />
+                    </span>
+                    <span className="text-sm font-medium text-slate-700">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="p-5 sm:p-7 lg:p-10">
+            <div className="pr-10 sm:pr-12">
+              <h3 className="text-3xl font-black leading-tight text-slate-900 sm:text-4xl lg:text-5xl">
+                Hisob yaratish
+              </h3>
+              <p className="mt-3 text-base text-slate-500 sm:text-lg">
+                Barcha maydonlarni to‘ldiring
+              </p>
+            </div>
+
+            <form onSubmit={handleSubmit} className="mt-8 space-y-4 sm:space-y-5">
+              <div>
+                <label className="mb-2 block text-sm font-bold uppercase tracking-[0.08em] text-slate-500">
+                  Ism familiya
+                </label>
+                <input
+                  type="text"
+                  name="fullName"
+                  value={formData.fullName}
+                  onChange={handleChange}
+                  placeholder="John Doe"
+                  required
+                  className="h-14 w-full rounded-[18px] border border-slate-200 bg-[#f8fafc] px-5 text-base text-slate-900 outline-none placeholder:text-slate-400 focus:border-violet-500 focus:bg-white"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm font-bold uppercase tracking-[0.08em] text-slate-500">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="email@example.com"
+                  required
+                  className="h-14 w-full rounded-[18px] border border-slate-200 bg-[#f8fafc] px-5 text-base text-slate-900 outline-none placeholder:text-slate-400 focus:border-violet-500 focus:bg-white"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm font-bold uppercase tracking-[0.08em] text-slate-500">
+                  Telefon
+                </label>
+                <input
+                  type="text"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  placeholder="+998 90 000 00 00"
+                  required
+                  className="h-14 w-full rounded-[18px] border border-slate-200 bg-[#f8fafc] px-5 text-base text-slate-900 outline-none placeholder:text-slate-400 focus:border-violet-500 focus:bg-white"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm font-bold uppercase tracking-[0.08em] text-slate-500">
+                  Avatar URL <span className="normal-case">(ixtiyoriy)</span>
+                </label>
+                <input
+                  type="text"
+                  name="avatar"
+                  value={formData.avatar}
+                  onChange={handleChange}
+                  placeholder="https://..."
+                  className="h-14 w-full rounded-[18px] border border-slate-200 bg-[#f8fafc] px-5 text-base text-slate-900 outline-none placeholder:text-slate-400 focus:border-violet-500 focus:bg-white"
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="mt-2 flex h-14 w-full items-center justify-center gap-3 rounded-[18px] bg-amber-400 px-5 text-lg font-black text-black transition hover:brightness-105"
+              >
+                <span>Ro‘yxatdan o‘tish</span>
+                <span>→</span>
+              </button>
+            </form>
+
+            <div className="my-6 flex items-center gap-4">
+              <div className="h-px flex-1 bg-slate-200" />
+              <span className="text-sm font-semibold text-slate-400">yoki</span>
+              <div className="h-px flex-1 bg-slate-200" />
             </div>
 
             <button
               type="button"
-              onClick={onClose}
-              className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-2xl border border-slate-200 bg-slate-50 text-slate-500 transition hover:bg-slate-100 hover:text-slate-900"
+              className="flex h-14 w-full items-center justify-center gap-3 rounded-[18px] border border-slate-200 bg-[#f8fafc] px-5 text-base font-bold text-slate-800 transition hover:bg-slate-100 sm:text-lg"
             >
-              ✕
+              <svg
+                className="h-6 w-6"
+                viewBox="0 0 48 48"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill="#FFC107"
+                  d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3 0 5.7 1.1 7.8 3l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.2-.1-2.3-.4-3.5z"
+                />
+                <path
+                  fill="#FF3D00"
+                  d="M6.3 14.7l6.6 4.8C14.7 16 19 12 24 12c3 0 5.7 1.1 7.8 3l5.7-5.7C34.1 6.1 29.3 4 24 4c-7.7 0-14.3 4.3-17.7 10.7z"
+                />
+                <path
+                  fill="#4CAF50"
+                  d="M24 44c5.2 0 10-2 13.5-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.2-8l-6.5 5C9.6 39.5 16.3 44 24 44z"
+                />
+                <path
+                  fill="#1976D2"
+                  d="M43.6 20.5H42V20H24v8h11.3c-1.1 3.1-3.3 5.6-6.2 7.1l6.2 5.2C39 36.9 44 31 44 24c0-1.2-.1-2.3-.4-3.5z"
+                />
+              </svg>
+              <span>Google orqali kirish</span>
             </button>
           </div>
-
-          <div className="mt-8">
-            <h3 className="text-4xl font-black leading-tight text-slate-900">
-              Hisob yaratish
-            </h3>
-            <p className="mt-3 text-lg text-slate-500">
-              Barcha maydonlarni to‘ldiring
-            </p>
-          </div>
-
-          <form onSubmit={handleSubmit} className="mt-8 space-y-5">
-            <div>
-              <label className="mb-2 block text-sm font-bold uppercase tracking-[0.08em] text-slate-500">
-                Ism familiya
-              </label>
-              <input
-                type="text"
-                name="fullName"
-                value={formData.fullName}
-                onChange={handleChange}
-                placeholder="John Doe"
-                required
-                className="h-14 w-full rounded-[18px] border border-slate-200 bg-slate-50 px-5 text-base text-slate-900 outline-none placeholder:text-slate-400 focus:border-violet-500 focus:bg-white"
-              />
-            </div>
-
-            <div>
-              <label className="mb-2 block text-sm font-bold uppercase tracking-[0.08em] text-slate-500">
-                Email
-              </label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="email@example.com"
-                required
-                className="h-14 w-full rounded-[18px] border border-slate-200 bg-slate-50 px-5 text-base text-slate-900 outline-none placeholder:text-slate-400 focus:border-violet-500 focus:bg-white"
-              />
-            </div>
-
-            <div>
-              <label className="mb-2 block text-sm font-bold uppercase tracking-[0.08em] text-slate-500">
-                Telefon
-              </label>
-              <input
-                type="text"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                placeholder="+998 90 000 00 00"
-                required
-                className="h-14 w-full rounded-[18px] border border-slate-200 bg-slate-50 px-5 text-base text-slate-900 outline-none placeholder:text-slate-400 focus:border-violet-500 focus:bg-white"
-              />
-            </div>
-
-            <div>
-              <label className="mb-2 block text-sm font-bold uppercase tracking-[0.08em] text-slate-500">
-                Avatar URL <span className="normal-case">(ixtiyoriy)</span>
-              </label>
-              <input
-                type="text"
-                name="avatar"
-                value={formData.avatar}
-                onChange={handleChange}
-                placeholder="https://..."
-                className="h-14 w-full rounded-[18px] border border-slate-200 bg-slate-50 px-5 text-base text-slate-900 outline-none placeholder:text-slate-400 focus:border-violet-500 focus:bg-white"
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="mt-2 flex h-14 w-full cursor-pointer items-center justify-center gap-3 rounded-[18px] bg-amber-400 px-5 text-lg font-black text-black transition hover:brightness-105"
-            >
-              <span>Ro‘yxatdan o‘tish</span>
-              <span>→</span>
-            </button>
-          </form>
-
-          <div className="my-6 flex items-center gap-4">
-            <div className="h-px flex-1 bg-slate-200" />
-            <span className="text-sm font-semibold text-slate-400">yoki</span>
-            <div className="h-px flex-1 bg-slate-200" />
-          </div>
-
-          <button
-            type="button"
-            className="flex h-14 w-full cursor-pointer items-center justify-center gap-3 rounded-[18px] border border-slate-200 bg-slate-50 px-5 text-lg font-bold text-slate-800 transition hover:bg-slate-100"
-          >
-            <svg
-              className="h-6 w-6"
-              viewBox="0 0 48 48"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill="#FFC107"
-                d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3 0 5.7 1.1 7.8 3l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.2-.1-2.3-.4-3.5z"
-              />
-              <path
-                fill="#FF3D00"
-                d="M6.3 14.7l6.6 4.8C14.7 16 19 12 24 12c3 0 5.7 1.1 7.8 3l5.7-5.7C34.1 6.1 29.3 4 24 4c-7.7 0-14.3 4.3-17.7 10.7z"
-              />
-              <path
-                fill="#4CAF50"
-                d="M24 44c5.2 0 10-2 13.5-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.2-8l-6.5 5C9.6 39.5 16.3 44 24 44z"
-              />
-              <path
-                fill="#1976D2"
-                d="M43.6 20.5H42V20H24v8h11.3c-1.1 3.1-3.3 5.6-6.2 7.1l6.2 5.2C39 36.9 44 31 44 24c0-1.2-.1-2.3-.4-3.5z"
-              />
-            </svg>
-            <span>Google orqali kirish</span>
-          </button>
         </div>
       </div>
     </div>
@@ -444,6 +545,7 @@ export default function SinglePage() {
   const routeId = Array.isArray(params?.id) ? params.id[0] : params?.id;
   const normalizedId = normalizeId(routeId);
 
+  const [isSuccessOpen, setIsSuccessOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0);
   const [openIndex, setOpenIndex] = useState<number | null>(0);
   const [isRentModalOpen, setIsRentModalOpen] = useState(false);
@@ -581,20 +683,20 @@ export default function SinglePage() {
   ];
 
   return (
-    <div className="min-h-screen bg-white text-slate-900">
-      <section className="relative overflow-hidden border-b border-slate-200">
-        <div className="absolute inset-0">
-          <img
-            src={activeImage}
-            alt={modelName}
-            className="h-full w-full object-cover"
-          />
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.96)_0%,rgba(255,255,255,0.88)_34%,rgba(255,255,255,0.62)_66%,rgba(255,255,255,0.18)_100%)]" />
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.20)_0%,rgba(255,255,255,0.65)_72%,#ffffff_100%)]" />
-        </div>
+    <div className="min-h-screen text-white">
+      <section className="relative min-h-[88vh] overflow-hidden">
+        <img
+          src={activeImage}
+          alt={modelName}
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+
+        <div className="absolute inset-0 bg-white/40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/60 to-white/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-white/30 to-transparent" />
 
         <div className="relative z-10 mx-auto max-w-7xl px-4 pb-10 pt-8 sm:px-6 lg:px-10 lg:pb-14 lg:pt-12">
-          <div className="min-h-[82vh] flex items-end">
+          <div className="flex min-h-[82vh] items-end">
             <div className="w-full max-w-4xl">
               <div className="mb-6 flex flex-wrap items-center gap-3">
                 <span className="rounded-full bg-amber-400 px-4 py-1.5 text-[11px] font-black uppercase tracking-[0.26em] text-black">
@@ -607,7 +709,7 @@ export default function SinglePage() {
                   </span>
                 ) : null}
 
-                <div className="flex items-center gap-2 rounded-full border border-slate-200 bg-white/85 px-4 py-1.5 text-sm text-slate-700 backdrop-blur-md">
+                <div className="flex items-center gap-2 rounded-full border border-slate-200 bg-white/85 px-4 py-1.5 text-sm text-slate-400 backdrop-blur-md">
                   <span className={`h-2.5 w-2.5 rounded-full ${availabilityColor}`} />
                   <span>{availabilityText}</span>
                 </div>
@@ -629,7 +731,7 @@ export default function SinglePage() {
                 {quickStats.map((item) => (
                   <div
                     key={item.label}
-                    className="rounded-[22px] border border-slate-200 bg-white/90 px-5 py-4 backdrop-blur-md shadow-sm"
+                    className="rounded-[22px] border border-slate-200 bg-white/90 px-5 py-4 shadow-sm backdrop-blur-md"
                   >
                     <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-slate-400">
                       {item.label}
@@ -646,7 +748,7 @@ export default function SinglePage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-10 lg:py-14">
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_340px]">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,1.35fr)_380px]">
           <div className="space-y-8">
             {images.length > 1 ? (
               <div className={cardClass("p-5")}>
@@ -691,8 +793,8 @@ export default function SinglePage() {
               </div>
             ) : null}
 
-            <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_320px]">
-              <section className={cardClass("p-6")}>
+            <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_330px]">
+              <section className="rounded-[30px] border border-white/10 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.35)]">
                 <SectionTitle
                   label="Asosiy ma'lumot"
                   title="Haydash tajribasi va tavsif"
@@ -1003,6 +1105,12 @@ export default function SinglePage() {
       <RentModal
         open={isRentModalOpen}
         onClose={() => setIsRentModalOpen(false)}
+        onSuccess={() => setIsSuccessOpen(true)}
+      />
+
+      <SuccessToast
+        open={isSuccessOpen}
+        onClose={() => setIsSuccessOpen(false)}
       />
     </div>
   );
