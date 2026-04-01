@@ -14,6 +14,9 @@ const useApi = <T,>({ url }: UseApiParams) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+
+  
+
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
