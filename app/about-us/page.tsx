@@ -4,25 +4,26 @@ import AboutFeatures from "@/components/AboutFeatures"
 import StatsSection from "@/components/Aboutstats"
 import VideoSwiper from "@/components/Aboutvadoe"
 import AppDownloadAndReviews from "@/components/AboutTel"
-import CarRentalFaq from "@/components/AboutTOP"
 import CarCTA from "@/components/AboutLoak"
+import TopCarRent from "@/components/AboutTOP"
+import DownloadAppBanner from "@/components/AboutTELcat"
 
 
 const AboutUs = () => {
   return (
     <div>
-      <Aboutussiper/>
-      <AboutFeatures/>
+      <Aboutussiper />
+      <AboutFeatures />
       <VideoSwiper />
-      <StatsSection/>
-      <FeatureSection/>
-      <AppDownloadAndReviews/>
-      <CarRentalFaq/>
-      <CarCTA/>
+      <StatsSection />
+      <FeatureSection />
+      <DownloadAppBanner />
+      <AppDownloadAndReviews />
+      <TopCarRent />
+      <CarCTA />
     </div>
   )
 }
 
 export default AboutUs
 
-                                   

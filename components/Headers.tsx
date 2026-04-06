@@ -60,7 +60,7 @@ const Headers = () => {
                     {[
                         { href: '/', label: 'Home' },
                         { href: '/vehicles', label: 'Vehicles' },
-                        { href: '/details', label: 'Details' },
+                        
                         { href: '/about-us', label: 'About Us' },
                         { href: '/contact-us', label: 'Contact Us' },
                     ].map(({ href, label }) => (

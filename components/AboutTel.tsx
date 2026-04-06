@@ -42,7 +42,7 @@ export default function AppDownloadAndReviews() {
     }
 
     return (
-        <section className="w-full px-4 py-12 md:px-6">
+        <section className="w-full px-4 py-8 md:px-6">
             <div className="mx-auto max-w-6xl">
                 <div className="mt-14">
                     <h3 className="text-center text-3xl font-bold text-black">

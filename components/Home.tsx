@@ -10,8 +10,8 @@ import FeatureSection from './AbouFeture';
 const Home = () => {
 
   return (
-    <main className=" container mx-auto ">
-      <section className="relative w-full h-150  container mx-auto px-10 mt-2 overflow-hidden rounded-4xl">
+    <main className="  ">
+      <section className="relative w-full h-150   px-10 mt-2 overflow-hidden rounded-4xl">
 
         <HeroSlider />
 
@@ -20,7 +20,7 @@ const Home = () => {
       <section className="container mx-auto  ">
         <BrandsSection />
       </section>
-      <section>
+      <section className='container mx-auto px-5'>
        <FeatureSection />
       </section>
       <section className="container mx-auto px-5">
