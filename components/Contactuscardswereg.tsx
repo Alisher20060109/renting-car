@@ -21,13 +21,13 @@ export default function ContactSwipercard() {
 
     if (loading) {
         return (
-            <div className="w-full h-[420px] bg-gray-200 animate-pulse rounded-[12px]" />
+            <div className="w-full h-[240px] sm:h-[300px] md:h-[360px] lg:h-[420px] xl:h-[480px] animate-pulse rounded-[12px] bg-gray-200" />
         );
     }
 
     if (error) {
         return (
-            <div className="w-full h-[420px] flex items-center justify-center bg-gray-100 rounded-[12px]">
+            <div className="flex w-full h-[240px] sm:h-[300px] md:h-[360px] lg:h-[420px] xl:h-[480px] items-center justify-center rounded-[12px] bg-gray-100">
                 <p className="text-red-500">Xatolik: {error}</p>
             </div>
         );
@@ -35,15 +35,15 @@ export default function ContactSwipercard() {
 
     if (!bannerImages.length) {
         return (
-            <div className="w-full h-[420px] flex items-center justify-center bg-gray-100 rounded-[12px]">
+            <div className="flex w-full h-[240px] sm:h-[300px] md:h-[360px] lg:h-[420px] xl:h-[480px] items-center justify-center rounded-[12px] bg-gray-100">
                 <p className="text-gray-500">Rasm topilmadi</p>
             </div>
         );
     }
 
     return (
-        <div className="w-full">
-            <div className="w-[950px] h-[480px] overflow-hidden rounded-[12px] shadow-lg">
+        <div className="w-full min-w-0">
+            <div className="w-full h-[240px] sm:h-[300px] md:h-[360px] lg:h-[420px] xl:h-[480px] overflow-hidden rounded-[12px] shadow-lg">
                 <Swiper
                     modules={[Autoplay, EffectFade]}
                     slidesPerView={1}
