@@ -11,7 +11,7 @@ const Home = () => {
 
   return (
     <main className="  ">
-      <section className="relative w-full h-150   px-10 mt-2 overflow-hidden rounded-4xl">
+      <section className="relative w-full h-155   overflow-hidden ">
 
         <HeroSlider />
 

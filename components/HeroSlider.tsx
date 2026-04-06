@@ -219,7 +219,7 @@ const HeroSlider: React.FC = () => {
   const car: Car = cars[current];
 
   return (
-    <section className="relative container mx-auto  w-full h-svh overflow-hidden bg-[#1a1a1a]">
+    <section className="relative   w-full h-svh overflow-hidden bg-[#1a1a1a]">
 
       {/* ── SLIDES ── */}
       {cars.map((c: Car, i: number) => (
