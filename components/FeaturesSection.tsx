@@ -31,7 +31,7 @@ const FeaturesSection = () => {
 
           {/* --- IMAGE BLOCK --- */}
           <div className="w-full lg:w-5/12 relative">
-            <div className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden">
+            <div className="relative w-full aspect-4/5 rounded-2xl overflow-hidden">
               <Image
                 src="/images/salon.jpg"
                 alt="salon"
@@ -42,7 +42,7 @@ const FeaturesSection = () => {
                 className="object-cover object-center"
               />
               {/* subtle overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent" />
             </div>
 
             {/* Floating stat card */}
@@ -106,7 +106,7 @@ const FeaturesSection = () => {
                 >
                   {/* Number */}
                   <span
-                    className="text-[13px] font-bold text-gray-300 tracking-widest shrink-0 w-8 pt-[3px]"
+                    className="text-[13px] font-bold text-gray-300 tracking-widest shrink-0 w-8 pt-0.75"
                     style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
                   >
                     {f.num}
@@ -126,7 +126,7 @@ const FeaturesSection = () => {
                   </div>
 
                   {/* Arrow — desktop only */}
-                  <div className="hidden sm:flex shrink-0 w-8 h-8 rounded-full border border-gray-200 items-center justify-center mt-[2px] group-hover:border-[#6347F9] transition-colors">
+                  <div className="hidden sm:flex shrink-0 w-8 h-8 rounded-full border border-gray-200 items-center justify-center mt-0.5 group-hover:border-[#6347F9] transition-colors">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-3 h-3 text-gray-400">
                       <line x1="5" y1="12" x2="19" y2="12" />
                       <polyline points="12 5 19 12 12 19" />

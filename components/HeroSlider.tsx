@@ -203,7 +203,8 @@ const HeroSlider: React.FC = () => {
 
   useEffect(() => {
     if (!cars || cars.length <= 1) return;
-    const timer = setInterval(next, 7000);
+    const timer = setInterval(next, 7100);
+    
     return () => clearInterval(timer);
   }, [current, cars, next]);
 
@@ -218,7 +219,7 @@ const HeroSlider: React.FC = () => {
   const car: Car = cars[current];
 
   return (
-    <section className="relative w-full h-svh overflow-hidden bg-[#1a1a1a]">
+    <section className="relative container mx-auto  w-full h-svh overflow-hidden bg-[#1a1a1a]">
 
       {/* ── SLIDES ── */}
       {cars.map((c: Car, i: number) => (

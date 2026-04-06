@@ -11,10 +11,10 @@ const Footer = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 items-center">
 
             {/* LOGO 07 */}
-            <Link href="/" className="flex items-center gap-[10px] group cursor-pointer w-fit">
-              <div className="flex flex-col items-center gap-[4px]">
-                <div className="w-[9px] h-[9px] rounded-full bg-gray-900 transition-transform duration-300 group-hover:scale-110" />
-                <div className="w-[6px] h-[6px] rounded-full bg-[#6347F9] transition-transform duration-300 group-hover:scale-110" />
+            <Link href="/" className="flex items-center gap-2.5 group cursor-pointer w-fit">
+              <div className="flex flex-col items-center gap-1">
+                <div className="w-2.25 h-2.25 rounded-full bg-gray-900 transition-transform duration-300 group-hover:scale-110" />
+                <div className="w-1.5 h-1.5 rounded-full bg-[#6347F9] transition-transform duration-300 group-hover:scale-110" />
               </div>
               <span
                 className="text-[21px] font-extrabold tracking-[-0.04em] text-gray-900 leading-none"
@@ -26,7 +26,7 @@ const Footer = () => {
 
             {/* ADDRESS */}
             <div className="flex items-start gap-3">
-              <MapPin size={16} className="text-gray-400 mt-[3px] shrink-0" />
+              <MapPin size={16} className="text-gray-400 mt-0.75 shrink-0" />
               <div>
                 <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-widest mb-1">Address</p>
                 <p className="text-[14px] font-semibold text-gray-900 leading-tight">Oxford Ave. Cary, NC 27511</p>
@@ -35,7 +35,7 @@ const Footer = () => {
 
             {/* EMAIL */}
             <div className="flex items-start gap-3">
-              <Mail size={16} className="text-gray-400 mt-[3px] shrink-0" />
+              <Mail size={16} className="text-gray-400 mt-0.75 shrink-0" />
               <div>
                 <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-widest mb-1">Email</p>
                 <a
@@ -49,7 +49,7 @@ const Footer = () => {
 
             {/* PHONE */}
             <div className="flex items-start gap-3">
-              <Phone size={16} className="text-gray-400 mt-[3px] shrink-0" />
+              <Phone size={16} className="text-gray-400 mt-0.75 shrink-0" />
               <div>
                 <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-widest mb-1">Phone</p>
                 <a
@@ -95,7 +95,7 @@ const Footer = () => {
                 className="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-900 transition-colors duration-200"
                 aria-label="X (Twitter)"
               >
-                <svg viewBox="0 0 24 24" className="w-[15px] h-[15px] fill-current">
+                <svg viewBox="0 0 24 24" className="w-3.75 h-3.75 fill-current">
                   <path d="M18.244 2H21l-6.56 7.497L22 22h-5.828l-4.563-5.96L6.4 22H3.64l7.017-8.018L2 2h5.976l4.124 5.447L18.244 2zm-1.02 18h1.527L7.145 3.896H5.506L17.224 20z" />
                 </svg>
               </a>
@@ -165,7 +165,7 @@ const Footer = () => {
               >
                 <Apple size={20} className="text-gray-500 group-hover:text-gray-900 transition-colors shrink-0" />
                 <div className="leading-none">
-                  <p className="text-[10px] text-gray-400 mb-[3px] uppercase tracking-widest">Download on the</p>
+                  <p className="text-[10px] text-gray-400 mb-0.75 uppercase tracking-widest">Download on the</p>
                   <p className="text-[13px] font-semibold text-gray-900 tracking-[-0.01em]">App Store</p>
                 </div>
               </a>
@@ -180,7 +180,7 @@ const Footer = () => {
                   <path fill="#4285F4" d="M489.7 244.5L325.3 234.3l-67.7 50.6 67.7 50.5 164.4-10.2c14.8-.9 26.3-13.2 26.3-28s-11.5-27.1-26.3-28.2z" />
                 </svg>
                 <div className="leading-none">
-                  <p className="text-[10px] text-gray-400 mb-[3px] uppercase tracking-widest">Get it on</p>
+                  <p className="text-[10px] text-gray-400 mb-0.75 uppercase tracking-widest">Get it on</p>
                   <p className="text-[13px] font-semibold text-gray-900 tracking-[-0.01em]">Google Play</p>
                 </div>
               </a>
@@ -208,4 +208,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default Footer;  

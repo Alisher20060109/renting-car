@@ -99,10 +99,10 @@ const Headers = () => {
                     <div className="hidden sm:block w-px h-5 bg-gray-200" />
 
                     {/* CTA */}
-                    <button className="hidden sm:flex items-center gap-2 h-[38px] px-[18px] bg-gray-900 hover:bg-[#6347F9] text-white rounded-full text-[13px] font-bold tracking-[-0.01em] hover:scale-[1.02] transition-all duration-200 cursor-pointer border-none">
+                    <button className="hidden sm:flex items-center gap-2 h-9.5 px-4.5 bg-gray-900 hover:bg-[#6347F9] text-white rounded-full text-[13px] font-bold tracking-[-0.01em] hover:scale-[1.02] transition-all duration-200 cursor-pointer border-none">
                         Book a Car
-                        <span className="w-[18px] h-[18px] rounded-full bg-white/15 flex items-center justify-center">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" className="w-[10px] h-[10px]">
+                        <span className="w-4.5 h-4.5 rounded-full bg-white/15 flex items-center justify-center">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" className="w-2.5 h-2.5">
                                 <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
                             </svg>
                         </span>
